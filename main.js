@@ -5,7 +5,7 @@ let id = 0;
 //local Storage, asignacion de clave
 const clave_local_storage = "coleccionPerros";
 
-//guardamos los datos obtenidos del localStorage todo en una variable
+//guardamos los datos obtenidos del localStorage todo en una variable, que contiene un ARRAY
 let coleccionDePerros = cargar_perros();
 
 
@@ -40,8 +40,9 @@ function validar_formulario() {
     }
 }
 
-//funcion que genera objeto perro
+//funcion que genera objeto perro. OJO EL ORDEN
 function generarPerro() {
+    //1) identifico inputs, asigno variables
     let inputNombre = document.querySelector('#nombre').value;
     let inputRaza = document.querySelector('#raza').value;
     let inputEdad = document.querySelector('#edad').value;
@@ -50,15 +51,18 @@ function generarPerro() {
     let inputRutaFoto = document.querySelector('#ruta_foto').value;
     inputRutaFoto = inputRutaFoto.replace('C:\\fakepath', '\\images');
 
+    //2) creo el objeto perro, con la clase Perro
     let perro = new Perro(id, inputNombre, inputRaza, inputEdad, inputGenero, castrado, inputRutaFoto);
     id++;
-
+    //3) genero elementos de Dom, muestro targetas
     generar_card_perro(inputNombre, inputRutaFoto);
-    
-    coleccionDePerros.push(perro);
 
+    //4) agrego el objeto creado, como elemento del array coleccionDePerros 
+    coleccionDePerros.push(perro);
+    
     console.log(coleccionDePerros);
 
+    //5) guardo la informacion generada en el local Storage
     localStorage.setItem(clave_local_storage, JSON.stringify(coleccionDePerros));
 
 }
