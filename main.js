@@ -2,12 +2,24 @@
 //variabe global
 let id = 0;
 
+//local Storage, asignacion de clave
+const clave_local_storage = "coleccionPerros";
+
+//guardamos los datos obtenidos del localStorage todo en una variable
+let coleccionDePerros = cargar_perros();
+
+
 //identificamos el elemento boton y creamos un evento
 let btnCrear = document.querySelector("#btn_crear");
 btnCrear.addEventListener('click', () => {
-    console.log('entro el evento');
-    validar_formulario();
-    reset_form();    
+    
+    if(validar_formulario()){
+        generarPerro();
+        reset_form();  
+
+    } else{
+        alert("Ingrese toda la informacion necesaria");
+    }  
 });
 
 //funcion validadora
@@ -17,15 +29,14 @@ function validar_formulario() {
     let inputRaza = document.querySelector('#raza').value;
     let inputEdad = document.querySelector('#edad').value;
     let inputGenero = document.querySelector('#genero').value;
-    let castrado = document.querySelector('#castrado').checked;
     let inputRutaFoto = document.querySelector('#ruta_foto').value;
 
     if (
-        (!inputNombre) || (!inputRaza) || (!inputEdad) || (!inputGenero) || (!inputRutaFoto) || (!castrado)
+        (!inputNombre) || (!inputRaza) || (!inputEdad) || (!inputGenero) || (!inputRutaFoto) 
     ) {
-        return alert('error, ingrese toda la informacion');
+        return false;
     } else {
-        return generarPerro();
+        return true;
     }
 }
 
@@ -43,8 +54,15 @@ function generarPerro() {
     id++;
 
     generar_card_perro(inputNombre, inputRutaFoto);
+    
+    coleccionDePerros.push(perro);
+
+    console.log(coleccionDePerros);
+
+    localStorage.setItem(clave_local_storage, JSON.stringify(coleccionDePerros));
 
 }
+
 
 //funcion que se encarga de mostrar los detalles de cada perro
 function generar_card_perro(nombre, ruta_foto) {
@@ -81,3 +99,25 @@ function reset_form(){
      document.querySelector('#ruta_foto').value = "";
 
 }
+
+
+//funcion que toma datos del localStorage y los recorre en un arreglo, cargandolos como objetos perro
+function cargar_perros(){
+
+    let arregloStorage = localStorage.getItem(clave_local_storage);
+    console.log(arregloStorage);
+    if (arregloStorage){
+
+        arregloStorage = JSON.parse(arregloStorage);
+        for (let i=0; i< arregloStorage.length; i++){
+
+            let perro = arregloStorage[i];
+            generar_card_perro(perro.nombre,perro.foto)
+        }
+        return arregloStorage;  //si encuentra datos dentro del Storage, devuelve el arreglo
+    }
+
+    return new Array();    //si no encuentra datos, crea un nuevo Array vacio.
+}
+
+
