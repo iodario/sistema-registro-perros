@@ -7,6 +7,7 @@ let btnCrear = document.querySelector("#btn_crear");
 btnCrear.addEventListener('click', () => {
     console.log('entro el evento');
     validar_formulario();
+    reset_form();    
 });
 
 //funcion validadora
@@ -28,6 +29,7 @@ function validar_formulario() {
     }
 }
 
+//funcion que genera objeto perro
 function generarPerro() {
     let inputNombre = document.querySelector('#nombre').value;
     let inputRaza = document.querySelector('#raza').value;
@@ -65,5 +67,17 @@ function generar_card_perro(nombre, ruta_foto) {
     //identifico el div que contiene la targeta
     let contenedor = document.getElementById("perroCtn");
     contenedor.appendChild(new_div);
+
+}
+
+//funcion que resetea los input del formulario
+function reset_form(){
+
+     document.querySelector('#nombre').value = "";
+     document.querySelector('#raza').value = "";
+     document.querySelector('#edad').value = "";
+     document.querySelector('#genero').value = "";
+     document.querySelector('#castrado').value = false;
+     document.querySelector('#ruta_foto').value = "";
 
 }
