@@ -37,16 +37,16 @@ function generarPerro() {
     let inputRutaFoto = document.querySelector('#ruta_foto').value;
     inputRutaFoto = inputRutaFoto.replace('C:\\fakepath', '\\images');
 
-    let perro = new Perro (id,inputNombre,inputRaza,inputEdad,inputGenero,castrado,inputRutaFoto);
+    let perro = new Perro(id, inputNombre, inputRaza, inputEdad, inputGenero, castrado, inputRutaFoto);
     id++;
 
-    generar_card_perro(inputNombre,inputRutaFoto);
+    generar_card_perro(inputNombre, inputRutaFoto);
 
 }
 
 //funcion que se encarga de mostrar los detalles de cada perro
-function generar_card_perro(nombre,ruta_foto) { 
- 
+function generar_card_perro(nombre, ruta_foto) {
+
     let new_div = document.createElement("div");
     let new_h2 = document.createElement("h2");
 
