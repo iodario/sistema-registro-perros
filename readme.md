@@ -1,2 +1,2 @@
-# Sistema de registro para Perrera #
-# Uso de Objetos, Dom , Eventos, y Local Storage # 
+## Sistema de registro de Perros ##
+## Uso de Objetos, Dom , Eventos, y Local Storage ## 
