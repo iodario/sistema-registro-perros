@@ -1,0 +1,31 @@
+body {
+	background: hsl(267, 8%, 72%);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	font-family: 'Montserrat', sans-serif;
+	height: 100vh;
+	margin: -20px 0 50px;
+}
+
+#perroCtn{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+#perroCtn div{
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    background-color: #fff;
+    border: 5px solid #000;
+    border-radius: 10px;
+    margin: 20px;
+}
+#perroCtn div img{
+    width: 50%;
+}
+
+#perroCtn div button{
+    width: 50%;
+}
